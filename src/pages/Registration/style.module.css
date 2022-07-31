@@ -1,0 +1,28 @@
+.container {
+  @apply min-w-full min-h-screen justify-center items-start flex;
+}
+
+.form {
+  @apply flex flex-col justify-center items-start p-8;
+}
+
+.input {
+  @apply mb-2 rounded-sm border-2 border-cyan-700 p-1 active:border-cyan-900;
+}
+
+.button {
+  @apply bg-cyan-700 text-white rounded-sm py-2 px-3 mt-6  uppercase tracking-wider text-sm;
+}
+
+.label {
+  @apply text-cyan-700 uppercase;
+}
+
+.file {
+  @apply block w-full text-sm text-cyan-700 
+  file:mr-4 file:py-2 file:px-4
+  file:rounded-full file:border-0
+  file:text-sm file:font-semibold
+  file:bg-cyan-700 file:text-white
+  hover:file:bg-cyan-900 mt-2;
+}

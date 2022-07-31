@@ -1,0 +1,7 @@
+.input {
+  @apply mb-2 rounded-sm border-2 border-cyan-700 p-1 active:border-cyan-900;
+}
+
+.label {
+  @apply text-cyan-700 uppercase;
+}
