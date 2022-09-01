@@ -1,8 +1,6 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import Input from '../../components/input/Input';
 import styles from './style.module.css';
-import { PrewiewImage } from './PrewiewImage';
-import axios from 'axios';
 import ImagePreview from './../../components/ui/ImagePreview/ImagePreview';
 
 export default function RegistrationPage() {
@@ -10,26 +8,12 @@ export default function RegistrationPage() {
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
   const [birthdate, setBirthdate] = useState('');
-  const [file, setFile] = useState<FileList | null>();
+  const [files, setFiles] = useState<any>([]);
 
   const formData = new FormData();
-  const onupload = () => {
-    if (file) {
-      formData.append('file', file[0]);
-      // console.log({ ...formData });
-      axios
-        .post('http://localhost:5000/api/upload', formData, {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-          },
-        })
-        .then((r) => console.log(r));
-    }
-  };
-
   return (
     <div className={styles.container}>
-      {file && <ImagePreview file={file} />}
+      {files.length && files.map((f: any) => <ImagePreview file={f} />)}
       <form className={styles.form}>
         <Input lable="Имя" type="text" setValue={setName} value={name} />
         <Input
@@ -45,14 +29,12 @@ export default function RegistrationPage() {
           setValue={setPassword}
           value={password}
         />
-        <label>
-          <p className={styles.label}>Добавить фотографии</p>
-        </label>
         <input
           type="file"
           className={styles.file}
+          multiple
           onChange={(e) => {
-            setFile(e.currentTarget.files);
+            setFiles([...files, e.currentTarget.files]);
           }}
         />
 
@@ -60,18 +42,13 @@ export default function RegistrationPage() {
           className={styles.button}
           type="button"
           onClick={(e) => {
-            console.log(email, name, password, birthdate, file);
-            onupload();
+            // console.log(email, name, password, birthdate, file);
+            // onupload();
           }}
-
-          // onClick={() => {
-          //   fileRef.current.click();
-          // }}
         >
           Зарегистрироваться
         </button>
       </form>
-      {/* <PrewiewImage file={file} /> */}
     </div>
   );
 }

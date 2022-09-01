@@ -1,17 +1,17 @@
-const plugin = require("tailwindcss/plugin");
+const plugin = require('tailwindcss/plugin');
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./src/**/*.{js,jsx,ts,tsx}"],
+  content: ['./src/**/*.{js,jsx,ts,tsx}'],
   theme: {
     extend: {
       colors: {
-        gg: "gold",
+        gg: 'gold',
       },
       transitionDuration: {
-        DEFAULT: "400ms",
+        DEFAULT: '400ms',
       },
       transitionTimingFunction: {
-        DEFAULT: "ease-in-out",
+        DEFAULT: 'ease-in-out',
       },
       keyframes: {
         fadeIn: {
@@ -22,7 +22,11 @@ module.exports = {
         },
       },
       animation: {
-        fade: "fadeIn .5s  ease-in-out",
+        fade: 'fadeIn .5s  ease-in-out',
+      },
+      boxShadow: {
+        b: '0 0 5px 0 #0000001f',
+        s: '0 2px 5px 0 #00000047',
       },
     },
   },

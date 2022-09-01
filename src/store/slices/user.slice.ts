@@ -1,16 +1,19 @@
 
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { API, RegistrationBody } from '../../api/api';
 // import socket from './../../socket';
 
-export const registration = createAsyncThunk('user/registration', async (payload) => {
+export const registration = createAsyncThunk('user/registration', async (body: RegistrationBody) => {
 
-    // socket.emit('createUser', payload)
-    // const response = await socket.on('createUser', (message) => message)
-
-    // console.log('createUserRes: ', response)
+    const response = await API.registration(body)
+    return response
 })
 
-const initialState = {}
+const initialState = {
+    isLoading: false,
+    error: '',
+
+}
 const userSlice = createSlice({
     name: 'user',
     initialState,
@@ -29,5 +32,6 @@ const userSlice = createSlice({
     }
 })
 
-export default userSlice.reducer;
+
 export const { } = userSlice.actions;
+export default userSlice.reducer;

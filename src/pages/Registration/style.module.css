@@ -11,7 +11,9 @@
 }
 
 .button {
-  @apply bg-cyan-700 text-white rounded-sm py-2 px-3 mt-6  uppercase tracking-wider text-sm;
+  @apply bg-cyan-700 text-white rounded-sm py-2 px-3 mt-6  
+  uppercase tracking-wider text-sm transition-all delay-500
+  active:bg-cyan-500;
 }
 
 .label {
