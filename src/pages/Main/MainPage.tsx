@@ -7,7 +7,7 @@ import { useTypedSelector } from './../../hook/useTypedSelector';
 export default function MainPage() {
   const { page } = useTypedSelector((state) => state.main);
   return (
-    <div className="flex overflow-hidden max-h-screen">
+    <div className="flex overflow-hidden max-h-screen bg-[#f0f2f4]">
       <Left />
       {page === 'messages' && <Right />}
       {page === 'people' && <People />}

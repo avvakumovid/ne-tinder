@@ -9,7 +9,7 @@ export default function Left() {
   const [tab, setTab] = useState('couple');
 
   return (
-    <div className="w-[25vw] min-h-screen max-h-screen z-20  overflow-hidden bg-white">
+    <div className="w-[25vw] min-h-screen max-h-screen z-20  overflow-hidden bg-white border-r">
       <Header />
       <div className="flex py-3 px-5 box-border items-center">
         <button
