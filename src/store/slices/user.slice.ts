@@ -1,5 +1,5 @@
 
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { API, LoginBody, RegistrationBody } from '../../api/api';
 // import socket from './../../socket';
 
@@ -11,6 +11,7 @@ export const registration = createAsyncThunk('user/registration', async function
 
 
 export const login = createAsyncThunk('user/login', async (body: LoginBody) => {
+
     const response = await API.login(body)
     return response
 
@@ -26,6 +27,9 @@ const userSlice = createSlice({
     name: 'user',
     initialState,
     reducers: {
+        setAuthToken(state, action: PayloadAction<string>) {
+            state.authToken = action.payload
+        }
     },
     extraReducers: (builder) => {
         builder.addCase(registration.pending, (state, action) => {
@@ -51,5 +55,5 @@ const userSlice = createSlice({
 })
 
 
-export const { } = userSlice.actions;
+export const { setAuthToken } = userSlice.actions;
 export default userSlice.reducer;

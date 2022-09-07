@@ -23,6 +23,8 @@ export class API {
     }
 
     public static login = async (body: LoginBody) => {
-        return await (await this.instance.post('/login', body)).data
+        const data = await (await this.instance.post('/login', body)).data
+        localStorage.setItem('authToken', data.access_token)
+        return data
     }
 }
