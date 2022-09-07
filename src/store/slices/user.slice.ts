@@ -1,15 +1,23 @@
 
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { API, RegistrationBody } from '../../api/api';
+import { API, LoginBody, RegistrationBody } from '../../api/api';
 // import socket from './../../socket';
 
-export const registration = createAsyncThunk('user/registration', async (body: RegistrationBody) => {
+export const registration = createAsyncThunk('user/registration', async function (body: RegistrationBody) {
 
     const response = await API.registration(body)
     return response
 })
 
+
+export const login = createAsyncThunk('user/login', async (body: LoginBody) => {
+    const response = await API.login(body)
+    return response
+
+})
+
 const initialState = {
+    authToken: '',
     isLoading: false,
     error: '',
 
@@ -28,6 +36,16 @@ const userSlice = createSlice({
         })
         builder.addCase(registration.rejected, (state, action) => {
             //error
+        })
+        builder.addCase(login.pending, (state, action) => {
+            state.isLoading = true
+        })
+        builder.addCase(login.fulfilled, (state, action) => {
+            console.log(action)
+            state.authToken = action.payload.access_token
+        })
+        builder.addCase(login.rejected, (state, action) => {
+
         })
     }
 })
