@@ -34,7 +34,7 @@ export const Chat: FC<Props> = ({ picture, name, date }) => {
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              fill-rule="evenodd"
+              fillRule="evenodd"
               clip-rule="evenodd"
               d="M0.877075 7.49988C0.877075 3.84219 3.84222 0.877045 7.49991 0.877045C11.1576 0.877045 14.1227 3.84219 14.1227 7.49988C14.1227 11.1575 11.1576 14.1227 7.49991 14.1227C3.84222 14.1227 0.877075 11.1575 0.877075 7.49988ZM7.49991 1.82704C4.36689 1.82704 1.82708 4.36686 1.82708 7.49988C1.82708 10.6329 4.36689 13.1727 7.49991 13.1727C10.6329 13.1727 13.1727 10.6329 13.1727 7.49988C13.1727 4.36686 10.6329 1.82704 7.49991 1.82704ZM9.85358 5.14644C10.0488 5.3417 10.0488 5.65829 9.85358 5.85355L8.20713 7.49999L9.85358 9.14644C10.0488 9.3417 10.0488 9.65829 9.85358 9.85355C9.65832 10.0488 9.34173 10.0488 9.14647 9.85355L7.50002 8.2071L5.85358 9.85355C5.65832 10.0488 5.34173 10.0488 5.14647 9.85355C4.95121 9.65829 4.95121 9.3417 5.14647 9.14644L6.79292 7.49999L5.14647 5.85355C4.95121 5.65829 4.95121 5.3417 5.14647 5.14644C5.34173 4.95118 5.65832 4.95118 5.85358 5.14644L7.50002 6.79289L9.14647 5.14644C9.34173 4.95118 9.65832 4.95118 9.85358 5.14644Z"
               fill="#ccc"
@@ -178,7 +178,7 @@ export const Chat: FC<Props> = ({ picture, name, date }) => {
               role="presentation"
               viewBox="0 0 24 24"
             >
-              <g fill-rule="nonzero" fill="none">
+              <g fillRule="nonzero" fill="none">
                 <g fill="#f0f2f4">
                   <path d="M2 12c0 5.524 4.477 10 10 10s10-4.476 10-10c0-5.523-4.477-10-10-10C6.477 2 2 6.477 2 12z"></path>
                   <g transform="translate(7.162 9.006)">
@@ -200,7 +200,7 @@ export const Chat: FC<Props> = ({ picture, name, date }) => {
               role="presentation"
               viewBox="0 0 24 24"
             >
-              <g transform="translate(2 2)" fill-rule="nonzero" fill="none">
+              <g transform="translate(2 2)" fillRule="nonzero" fill="none">
                 <circle fill="#f0f2f4" cx="10" cy="10" r="10"></circle>
                 <path
                   d="M6.844 13c.97 0 1.73-.434 2.275-1.094V9.683H6.57v1.077h1.41v.694c-.216.217-.665.443-1.137.443-.97 0-1.674-.807-1.674-1.901 0-1.094.704-1.902 1.674-1.902.569 0 1.025.347 1.265.755l.946-.555C8.655 7.608 7.957 7 6.844 7 5.282 7 4 8.164 4 9.996 4 11.819 5.282 13 6.844 13zm4.318-.113V7.096h-1.138v5.791h1.138zm2.194 0v-2.396h2.588V9.405h-2.588V8.181H16V7.096h-3.781v5.791h1.137z"
@@ -216,8 +216,8 @@ export const Chat: FC<Props> = ({ picture, name, date }) => {
               role="presentation"
               viewBox="0 0 24 24"
             >
-              <g fill="none" fill-rule="evenodd">
-                <g fill="#f0f2f4" fill-rule="nonzero">
+              <g fill="none" fillRule="evenodd">
+                <g fill="#f0f2f4" fillRule="nonzero">
                   <path d="M2 12c0 5.524 4.477 10 10 10s10-4.476 10-10c0-5.523-4.477-10-10-10S2 6.477 2 12z"></path>
                   <g transform="translate(7.162 9.006)">
                     <circle cx="1.977" cy="1.412" r="1.412"></circle>
@@ -238,7 +238,7 @@ export const Chat: FC<Props> = ({ picture, name, date }) => {
               role="presentation"
               viewBox="0 0 24 24"
             >
-              <g fill-rule="nonzero" fill="none">
+              <g fillRule="nonzero" fill="none">
                 <path
                   d="M12 2C6.477 2 2 6.477 2 12c0 5.524 4.477 10 10 10s10-4.477 10-10S17.523 2 12 2z"
                   fill="#f0f2f4"
