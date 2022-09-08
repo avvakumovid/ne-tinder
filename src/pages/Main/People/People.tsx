@@ -3,7 +3,7 @@ import { Card } from './Card';
 
 export const People = () => {
   return (
-    <div className="flex relative items-start justify-center w-[75vw] rounded-sm">
+    <div className="flex relative items-start justify-center w-[75vw] pt-10 rounded-sm">
       <Card
         zIndex={1}
         about="Занимаюсь инвистициями, учу финский язык, работал в таких фирмах как Паскерчик, Огуречик, предпочитаю  интелектуальный отдых, имею твердый ВЗГЛЯД на все, обладаю очаровательной улыбкой и не откладываю дела на потом"

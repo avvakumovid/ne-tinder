@@ -8,11 +8,14 @@ import { Login } from './pages/Login/Login';
 import { useSelector, useDispatch } from 'react-redux';
 import { useTypedSelector } from './hook/useTypedSelector';
 import { withCookies } from 'react-cookie';
-import { setAuthToken } from './store/slices/user.slice';
+import { setAuthToken, getUserInfo } from './store/slices/user.slice';
+import { AppDispatch } from './store';
+import { useTypedDispatch } from './hook/useTypedDispatch';
 
 function App() {
   const { authToken } = useTypedSelector((state) => state.user);
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useTypedDispatch();
 
   useEffect(() => {
     const token = localStorage.getItem('authToken');
@@ -20,6 +23,11 @@ function App() {
       dispatch(setAuthToken(token));
     }
   }, []);
+  useEffect(() => {
+    if (authToken) {
+      dispatch(getUserInfo(authToken));
+    }
+  }, [authToken]);
   return (
     <>
       {!authToken ? (
