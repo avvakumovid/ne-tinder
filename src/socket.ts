@@ -1,8 +1,18 @@
 // import { io } from 'socket.io-client';
 
-// const socket = io('ws://192.168.1.58:8080');
 
-// socket.on('createUser', (message) => console.log(message));
+// const connectToSocket = (token: string) => {
+//     const socket = io('http://127.0.0.1:5000', {
+//         extraHeaders: {
+//             Authorization: `Bearer ${token}`
+//         }
+//     })
+//     socket.on('message', (message) => console.log(message));
+//     return socket
+// }
 
-// export default socket;
-export default {}
+
+
+
+// export default connectToSocket;
+export default {};

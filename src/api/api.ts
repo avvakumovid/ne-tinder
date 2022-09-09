@@ -30,12 +30,21 @@ export class API {
     }
 
     public static getUserInfo = async (token: string) => {
-        const { data } = await this.instance.get('/info', {
-            headers: {
-                Authorization: 'Bearer ' + token
-            }
-        })
-        
+        const { data } = await this.instance.get('/info', authHeader(token))
+        return data
+    }
+
+    public static getUserChats = async (token: string) => {
+        const { data } = await this.instance.get('/chats', authHeader(token))
         return data
     }
 }
+
+
+const authHeader = (token: string) => ({
+    headers: {
+        Authorization: 'Bearer ' + token
+    }
+})
+
+

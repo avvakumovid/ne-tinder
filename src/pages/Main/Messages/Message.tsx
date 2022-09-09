@@ -28,10 +28,13 @@ export const Message: FC<Props> = ({ text, time, avatar, isMine, isLike }) => {
         {!isMine && (
           <div
             className={
-              'w-[52px] h-[52px] m-auto z-30 rounded-full bg-cover border-4 border-white  ' +
-              avatar
+              'w-[52px] h-[52px] m-auto z-30 rounded-full bg-cover border-4 border-white  '
+              // +
+              // avatar
             }
-          ></div>
+          >
+            <img src={avatar} alt="ava" />
+          </div>
         )}
         <div
           className={style}

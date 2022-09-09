@@ -1,8 +1,7 @@
 
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { API, LoginBody, RegistrationBody } from '../../api/api';
-// import {LikeUser} from '../../types/user.type'
-// import socket from './../../socket';
+
 import { LikeUser, UserState } from './../../types/user.type';
 
 export const registration = createAsyncThunk('user/registration', async function (body: RegistrationBody) {
@@ -41,7 +40,8 @@ const userSlice = createSlice({
     reducers: {
         setAuthToken(state, action: PayloadAction<string>) {
             state.authToken = action.payload
-        }
+        },
+        addMessageToChat(state, action) { }
     },
     extraReducers: (builder) => {
 
@@ -62,6 +62,7 @@ const userSlice = createSlice({
         })
         builder.addCase(login.fulfilled, (state, action) => {
             state.authToken = action.payload.access_token
+            state.isLoading = false
 
         })
         builder.addCase(login.rejected, (state, action) => {

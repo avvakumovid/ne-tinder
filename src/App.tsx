@@ -11,6 +11,8 @@ import { withCookies } from 'react-cookie';
 import { setAuthToken, getUserInfo } from './store/slices/user.slice';
 import { AppDispatch } from './store';
 import { useTypedDispatch } from './hook/useTypedDispatch';
+import { getUserChats } from './store/slices/chats.slice';
+import { Navigate } from 'react-router-dom';
 
 function App() {
   const { authToken } = useTypedSelector((state) => state.user);
@@ -26,6 +28,7 @@ function App() {
   useEffect(() => {
     if (authToken) {
       dispatch(getUserInfo(authToken));
+      dispatch(getUserChats(authToken));
     }
   }, [authToken]);
   return (
@@ -36,8 +39,10 @@ function App() {
         </Routes>
       ) : (
         <Routes>
+          <Route path="/" element={<Navigate to="/main/people" />} />
+          <Route path="/main/people" element={<MainPage />} />
+          <Route path="/main/:id" element={<MainPage />} />
           <Route path="/auth" element={<AuthPage />} />
-          <Route path="/" element={<MainPage />} />
           <Route path="/registration" element={<RegistrationPage />} />
         </Routes>
       )}

@@ -102,8 +102,8 @@ export const Profile: FC<Props> = ({
                   strokeWidth="1"
                   fill="none"
                   fillRule="evenodd"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 ></path>
               </svg>
               <span className="ml-1">{gender}</span>

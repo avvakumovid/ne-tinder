@@ -1,12 +1,28 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { useDispatch } from 'react-redux';
 import { useTypedSelector } from '../../../../hook/useTypedSelector';
 import { setPage } from '../../../../store/slices/main.slice';
+import { Socket } from '../../../../api/socket';
+import { addMessageToChat } from '../../../../store/slices/chats.slice';
+import { Link } from 'react-router-dom';
 
 export default function Header() {
+  const [socket, setSocket] = useState<Socket | null>(null);
   const { page } = useTypedSelector((state) => state.main);
+  const { _id } = useTypedSelector((state) => state.user);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    const token = localStorage.getItem('authToken');
+    if (token) {
+      setSocket(new Socket('http://127.0.0.1:5000', token, console.log));
+      socket?.socket.on('message', (message: any) =>
+        dispatch(addMessageToChat(message))
+      );
+    }
+  }, []);
+
   return (
     <div className="flex min-w-full h-[87px] bg-gradient-to-r from-[#fd267a]  to-[#ff6036]">
       <div className="w-1/2 flex items-center ">
@@ -15,27 +31,24 @@ export default function Header() {
         <span className="text-white font-semibold">Иван</span>
       </div>
       <div className="w-1/2 flex items-center justify-end">
-        <div
-          onClick={() => {
-            dispatch(setPage('people'));
-          }}
-          className="w-[40px] h-[40px] mr-4 rounded-full bg-[#00000052] flex justify-center items-center"
-        >
-          <svg
-            focusable="false"
-            aria-hidden="true"
-            role="presentation"
-            viewBox="0 0 24 24"
-            width="24px"
-            height="24px"
-            fill="white"
-          >
-            <path
-              d="M19.272 9.872V4.707A.708.708 0 0 0 18.564 4h-5.66a.707.707 0 0 0-.707.707v5.038a6.495 6.495 0 0 1 2.434-.878 6.664 6.664 0 0 1 4.64 1.005Zm1.131 7.57 2.123 1.57a1.062 1.062 0 0 1-1.175 1.77l-.085-.064-2.122-1.578h-.042a5.037 5.037 0 1 1-5.886-8.065h-.057a4.952 4.952 0 0 1 1.726-.594 5.023 5.023 0 0 1 3.226.594h-.064a5.002 5.002 0 0 1 2.562 3.672v-.036a5.03 5.03 0 0 1-.312 2.66l.106.071Zm-5.89.404c.473.223 1.001.302 1.518.226h-.021a2.639 2.639 0 0 0 2.25-3.021 2.646 2.646 0 1 0-3.746 2.795ZM3.708 13.197h5.66a6.678 6.678 0 0 0 .708 5.943v.424a.707.707 0 0 1-.708.708h-5.66A.708.708 0 0 1 3 19.564v-5.66a.707.707 0 0 1 .707-.707Zm0-9.197h5.66c.39 0 .708.317.708.707v5.66c0 .39-.317.708-.708.708h-5.66A.707.707 0 0 1 3 10.367v-5.66c0-.39.317-.707.707-.707Z"
-              fill="var(--color--icon-overlay, inherit)"
-            ></path>
-          </svg>
-        </div>
+        <Link to="/main/people">
+          <div className="w-[40px] h-[40px] mr-4 rounded-full bg-[#00000052] flex justify-center items-center">
+            <svg
+              focusable="false"
+              aria-hidden="true"
+              role="presentation"
+              viewBox="0 0 24 24"
+              width="24px"
+              height="24px"
+              fill="white"
+            >
+              <path
+                d="M19.272 9.872V4.707A.708.708 0 0 0 18.564 4h-5.66a.707.707 0 0 0-.707.707v5.038a6.495 6.495 0 0 1 2.434-.878 6.664 6.664 0 0 1 4.64 1.005Zm1.131 7.57 2.123 1.57a1.062 1.062 0 0 1-1.175 1.77l-.085-.064-2.122-1.578h-.042a5.037 5.037 0 1 1-5.886-8.065h-.057a4.952 4.952 0 0 1 1.726-.594 5.023 5.023 0 0 1 3.226.594h-.064a5.002 5.002 0 0 1 2.562 3.672v-.036a5.03 5.03 0 0 1-.312 2.66l.106.071Zm-5.89.404c.473.223 1.001.302 1.518.226h-.021a2.639 2.639 0 0 0 2.25-3.021 2.646 2.646 0 1 0-3.746 2.795ZM3.708 13.197h5.66a6.678 6.678 0 0 0 .708 5.943v.424a.707.707 0 0 1-.708.708h-5.66A.708.708 0 0 1 3 19.564v-5.66a.707.707 0 0 1 .707-.707Zm0-9.197h5.66c.39 0 .708.317.708.707v5.66c0 .39-.317.708-.708.708h-5.66A.707.707 0 0 1 3 10.367v-5.66c0-.39.317-.707.707-.707Z"
+                fill="var(--color--icon-overlay, inherit)"
+              ></path>
+            </svg>
+          </div>
+        </Link>
         <div className="w-[40px] h-[40px] mr-4 rounded-full bg-[#00000052] flex justify-center items-center">
           <svg
             focusable="false"
@@ -49,7 +62,20 @@ export default function Header() {
             <path d="M3 19.869C3 20.547 3.7 21 4.5 21h15c.8 0 1.5-.453 1.5-1.131v-7.016H3v7.016zm11.6-14.03v.565h-5c-.2 0-.3-.34-.3-.566v-.566c0-.452.4-.792.8-.792h4c.3 0 .6.34.6.792v.566h-.1zm4.8.565H16c.2-.226.2-.34.2-.566v-.566c0-1.357-1-2.262-2.3-2.262H10c-1-.114-2 .792-2 2.15v1.13H4.5c-.8.114-1.5.906-1.5 1.698v3.055h18V7.988c0-.905-.7-1.584-1.6-1.584z"></path>
           </svg>
         </div>
-        <div className="w-[40px] h-[40px] mr-4 rounded-full bg-[#00000052] flex justify-center items-center">
+        <div
+          onClick={() => {
+            socket?.emit('message', {
+              userId: _id,
+              chatId: '6319008e0977cea4b24dcd57',
+              message: {
+                date: Date.now(),
+                message: 'Test',
+                author: '6318ff926291db3e343681aa',
+              },
+            });
+          }}
+          className="w-[40px] h-[40px] mr-4 rounded-full bg-[#00000052] flex justify-center items-center"
+        >
           <svg
             focusable="false"
             aria-hidden="true"
